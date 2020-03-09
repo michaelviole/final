@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-sm-9">
+        <h2>
+             <i class="fas fa-ghost"></i>
+        </h2>
+        <h1><%= @house[:address] %></h1>
+        <p><%= @house[:description] %></p>
+        
+    </div>
+        <div class="col-sm-3">
+            <h3>Candy?</h3>
+            <h3>Decorations?</h3>
+            <p><%= @decorations_avg %></p>
+            <h3>Votes:</h3>
+            <p><%= @recommend_count %> <i class="fas fa-thumbs-up fa-2x mr-3"></i>
+            <%= @not_recommend_count %> <i class="fas fa-thumbs-down fa-2x mr-3"></i>
+            </p>
+
+        </div>
+
+    <p class="mt-5">
+            <a href="/houses/<%= @house[:id] %>/reviews/new" class="btn btn-warning">Leave a review now!</a>
+        </p>
+</div>
+

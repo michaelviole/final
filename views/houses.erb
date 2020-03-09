@@ -1,0 +1,5 @@
+<h1>All Houses</h1>
+
+<% for house in @houses %>
+    <p><a href="/houses/<%= house[:id] %>"><%= house[:address]%></a></p>
+<% end %>

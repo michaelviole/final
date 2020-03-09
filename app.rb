@@ -14,5 +14,40 @@ before { puts; puts "--------------- NEW REQUEST ---------------"; puts }       
 after { puts; }                                                                       #
 #######################################################################################
 
-events_table = DB.from(:events)
-rsvps_table = DB.from(:rsvps)
+houses_table = DB.from(:houses)
+reviews_table = DB.from(:reviews)
+users_table = DB.from(:users)
+
+before do
+    @current_user = users_table.where(id: session["user_id"]).to_a[0]
+end
+
+get "/" do
+    puts houses_table.all
+    @houses = houses_table.all
+    view "houses"
+end
+
+get "/houses/:id" do
+    @house = houses_table.where(id: params[:id]).first
+    @decorations_avg = reviews_table.where(house_id: @house[:id]).avg(:decorations)
+    @recommend_count = reviews_table.where(house_id: @house[:id], recommend: true).count
+    @not_recommend_count = reviews_table.where(house_id: @house[:id], recommend: false).count
+    view "house"
+end
+
+get "/houses/:id/reviews/new" do
+    @house = houses_table.where(id: params[:id]).first
+    view "new_review"
+end
+
+get '/houses/:id/reviews/create' do
+  puts params
+  @house = houses_table.where(id: params[:id]).to_a[0]
+  reviews_table.insert(house_id: params["id"],
+                       recommend: params["recommend"],
+                       candy: params["candy"],
+                       decorations: params["decorations"],
+                       name: params["name"])
+  view "create_review"
+end

@@ -5,31 +5,38 @@ DB = Sequel.connect(connection_string)                                          
 #######################################################################################
 
 # Database schema - this should reflect your domain model
-DB.create_table! :events do
+DB.create_table! :houses do
   primary_key :id
-  String :title
+  String :address
+  String :city_state_zip
   String :description, text: true
-  String :date
-  String :location
 end
-DB.create_table! :rsvps do
+
+DB.create_table! :reviews do
   primary_key :id
-  foreign_key :event_id
-  Boolean :going
+  foreign_key :house_id
+  foreign_key :user_id
+  Boolean :recommend
+  String :candy
+  Integer :decorations
+  String :name
+  Boolean :candy_gone
+end
+
+DB.create_table! :users do
+  primary_key :id
   String :name
   String :email
-  String :comments, text: true
+  String :password
 end
 
 # Insert initial (seed) data
-events_table = DB.from(:events)
+houses_table = DB.from(:houses)
 
-events_table.insert(title: "Bacon Burger Taco Fest", 
-                    description: "Here we go again bacon burger taco fans, another Bacon Burger Taco Fest is here!",
-                    date: "June 21",
-                    location: "Kellogg Global Hub")
+houses_table.insert(address: "1917 Greenwood Ave",
+                    city_state_zip: "Wilmette, IL 60091",
+                    description: "White colonial house with blue shutters")
 
-events_table.insert(title: "Kaleapolooza", 
-                    description: "If you're into nutrition and vitamins and stuff, this is the event for you.",
-                    date: "July 4",
-                    location: "Nowhere")
+houses_table.insert(address: "2022 Thornwood Ave",
+                    city_state_zip: "Wilmette, IL 60091",
+                    description: "Red brick house with green shutters")

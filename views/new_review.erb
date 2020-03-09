@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-sm-9">
+        <h2>
+             <i class="fas fa-ghost"></i>
+        </h2>
+        <h1>Review <%= @house[:address] %></h1>      
+    
+    <form action="/houses/<%= @house[:id] %>/reviews/create">
+        <div class="form-group">
+            <label>Trick-or-treater name</label>
+            <input type="name" class="form-control" name="name" placeholder="Jack O. Lantern">
+        </div>
+        <div class="form-group">
+            <label>Do you recommend trick-or-treating here?</label>
+            <select class="form-control" name="recommend">
+            <option value="1">Yes</option>
+            <option value"0">No</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>What kind of candy did you get?</label>
+            <textarea class="form-control" name="candy" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Decorations (5=Excellent, 1=None)</label>
+            <select multiple class="form-control" name="decorations">
+            <option>5</option>
+            <option>4</option>
+            <option>3</option>
+            <option>2</option>
+            <option>1</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-warning">Submit</button>
+    </form>
+</div>
