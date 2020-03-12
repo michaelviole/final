@@ -14,15 +14,21 @@
             <label>Do you recommend trick-or-treating here?</label>
             <select class="form-control" name="recommend">
             <option value="1">Yes</option>
-            <option value"0">No</option>
+            <option value="0">No</option>
             </select>
         </div>
         <div class="form-group">
-            <label>What kind of candy did you get?</label>
-            <textarea class="form-control" name="candy" rows="3"></textarea>
+            <label>Rate the candy (5=Excellent, 1=None)</label>
+            <select multiple class="form-control" name="candy">
+            <option>5</option>
+            <option>4</option>
+            <option>3</option>
+            <option>2</option>
+            <option>1</option>
+            </select>
         </div>
         <div class="form-group">
-            <label>Decorations (5=Excellent, 1=None)</label>
+            <label>Rate the decorations (5=Excellent, 1=None)</label>
             <select multiple class="form-control" name="decorations">
             <option>5</option>
             <option>4</option>
