@@ -30,6 +30,9 @@ get "/" do
 end
 
 get "/houses/:id" do
+    results = Geocoder.search(params["q"])
+    lat_long = results.first.coordinates
+    @lat_long = "#{lat_long[0]}, #{lat_long[1]}"
     @house = houses_table.where(id: params[:id]).first
     @candy_avg = reviews_table.where(house_id: @house[:id]).avg(:candy)
     @decorations_avg = reviews_table.where(house_id: @house[:id]).avg(:decorations)
