@@ -10,8 +10,8 @@
             width="600"
             height="450"
             frameborder="0" style="border:0"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw
-            &q=<%=@lat_long%>&zoom=6" allowfullscreen>
+            src="https://www.google.com/maps" allowfullscreen>
+
             </iframe>
         </p>
         
@@ -25,11 +25,20 @@
             <p><%= @recommend_count %> <i class="fas fa-thumbs-up fa-2x mr-3"></i>
             <%= @not_recommend_count %> <i class="fas fa-thumbs-down fa-2x mr-3"></i>
             </p>
-
         </div>
-
-    <p class="mt-5">
-            <a href="/houses/<%= @house[:id] %>/reviews/new" class="btn btn-warning">Leave a review now!</a>
-        </p>
 </div>
+    <div>
+        <h4>Tell Others -->
+            <class="mt-5">
+                <a href="/houses/<%= @house[:id] %>/reviews/new" class="btn btn-warning">Leave a review!</a>
+        </h4>
+    </div>
+    
+    <div>
+        <h4>No Candy? -->
+            <class="mt-5">
+                <a href="/nocandy" class="btn btn-danger">Sound the alarm!</a>
+        </h4>
+    </div>
+
 

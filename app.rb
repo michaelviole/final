@@ -19,6 +19,9 @@ houses_table = DB.from(:houses)
 reviews_table = DB.from(:reviews)
 users_table = DB.from(:users)
 
+
+
+
 before do
     @current_user = users_table.where(id: session["user_id"]).to_a[0]
 end
@@ -30,10 +33,9 @@ get "/" do
 end
 
 get "/houses/:id" do
-    results = Geocoder.search(params["q"])
-    lat_long = results.first.coordinates
-    @lat_long = "#{lat_long[0]}, #{lat_long[1]}"
     @house = houses_table.where(id: params[:id]).first
+#    location = houses_table.where(id: @house[:address])
+#    @location = location
     @candy_avg = reviews_table.where(house_id: @house[:id]).avg(:candy)
     @decorations_avg = reviews_table.where(house_id: @house[:id]).avg(:decorations)
     @recommend_count = reviews_table.where(house_id: @house[:id], recommend: true).count
@@ -55,6 +57,10 @@ get '/houses/:id/reviews/create' do
                        decorations: params["decorations"],
                        name: params["name"])
   view "create_review"
+end
+
+get '/nocandy' do
+    view "no_candy"
 end
 
 get "/users/new" do
