@@ -63,14 +63,16 @@ end
 
 get "/nocandy" do
     account_sid = "ACf3e455ac91ddabf450ceba1654c65537"
-    auth_token = "9508e52fb106e4ef4627af46228772a1"
+    auth_token = "d58d876f8c343ad155ef7b1d669443a7"
     client = Twilio::REST::Client.new(account_sid, auth_token)
 
-    
+    @house = houses_table.where(id:params[:id]).first
+    @street_address = "#{@house[:address]}"
+
     client.messages.create(
         from: "+12055578479", 
         to: "+18186405257",
-        body: "Skip this house.. there’s no candy left!"
+        body: "Skip #{@house[:address]}.. there’s no candy left!"
     )    
     
     view "no_candy"
