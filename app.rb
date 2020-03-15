@@ -62,8 +62,8 @@ get '/houses/:id/reviews/create' do
 end
 
 get "/nocandy" do
-    account_sid = "ACf3e455ac91ddabf450ceba1654c65537"
-    auth_token = "d58d876f8c343ad155ef7b1d669443a7"
+    account_sid = ENV["twilio_account_sid"]
+    auth_token = ENV["twilio_auth_token"]
     client = Twilio::REST::Client.new(account_sid, auth_token)
 
     @house = houses_table.where(id:params[:id]).first
