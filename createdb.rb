@@ -17,10 +17,9 @@ DB.create_table! :reviews do
   foreign_key :house_id
   foreign_key :user_id
   Boolean :recommend
-  String :candy
+  Integer :candy
   Integer :decorations
   String :name
-  Boolean :candy_gone
 end
 
 DB.create_table! :users do
