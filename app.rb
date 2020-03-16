@@ -20,8 +20,6 @@ reviews_table = DB.from(:reviews)
 users_table = DB.from(:users)
 
 
-
-
 before do
     @current_user = users_table.where(id: session["user_id"]).to_a[0]
 end
@@ -38,8 +36,8 @@ get "/houses/:id" do
     results = Geocoder.search(@full_address)
     lat_long = results.first.coordinates
     @lat_long = "#{lat_long[0]},#{lat_long[1]}"
-    @candy_avg = reviews_table.where(house_id: @house[:id]).avg(:candy)
-    @decorations_avg = reviews_table.where(house_id: @house[:id]).avg(:decorations)
+    @candy_avg = reviews_table.where(house_id: @house[:id]).avg(:candy).to_f
+    @decorations_avg = reviews_table.where(house_id: @house[:id]).avg(:decorations).to_f
     @recommend_count = reviews_table.where(house_id: @house[:id], recommend: true).count
     @not_recommend_count = reviews_table.where(house_id: @house[:id], recommend: false).count
     view "house"
